@@ -1,0 +1,246 @@
+{% extends 'webapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+          .col-md-3
+          {
+          display: inline-block;
+          margin-left:-4px;
+          }
+          .carousel-indicators .active {
+          background-color: blue;
+            }
+           .col-md-3 img {
+            width: 300px;
+            height: 300px;
+
+          }
+          .carousel-indicators {
+            position: absolute;
+            bottom: -50px;
+            }
+<!--          body .carousel-control-prev-icon,-->
+<!--          body .carousel-control-next-icon{-->
+<!--          background-color: blue;-->
+<!--          }-->
+           body .no-padding{
+           padding-left: 0,
+           padding-right: 0;
+           }
+           carousel-inner > .item {
+    position: relative;
+    display: none;
+    -webkit-transition: 10s ease-in-out left;
+    -moz-transition: 10s ease-in-out left;
+    -o-transition: 10s ease-in-out left;
+    transition: 10s ease-in-out left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+
+<div class="container">
+    <div class="carousel slide my-3" data-ride="carousel" id="demo">
+        <ul class="carousel-indicators">
+            <li class="active" data-slide-to="0" data-target="#demo"></li>
+            <li data-slide-to="1" data-target="#demo"></li>
+            <li data-slide-to="2" data-target="#demo"></li>
+        </ul>
+
+        <!--Slideshow starts here -->
+        <div class="container carousel-inner no-padding">
+
+            <div class="carousel-item active">
+                <div class="col-xs-3  mt-3 col-sm-3 col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <img alt="..." class="card-img-top" src='{% static "images/musc.png" %}' style="width:270px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Muscle Building Food</h5>
+                            <p class="card-text">Food is the cellular foundation through which optimal health and
+                                fitness can be obtained. A well balanced diet is important for building muscles.</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="card mt-3" style="width: 18rem;">
+                        <img alt="..." class="card-img-top" src='{% static "images/day.jpg" %}' style="width:270px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Days and Food</h5>
+                            <p class="card-text">A lack of healthy stress management techniques can put you at greater
+                                risk for heart disease and negatively impact your overall health.</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <img alt="..." class="card-img-top" src='{% static "images/tot.jpg" %}' style="width:270px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Healthy Diet</h5>
+                            <p class="card-text">A healthful diet must include a balance of several food groups, as no
+                                single group can provide everything the body needs for good health.</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <img alt="..." class="card-img-top" src='{% static "images/carbo.jpg" %}' style="width:270px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Carbohydrates</h5>
+                            <p class="card-text">Foods high in carbohydrates are an important part of a healthy diet.
+                                Carbohydrates provide the body with glucose, which is converted to energy.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="carousel-item">
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <img alt="..." class="card-img-top" src='{% static "images/fat.jpg" %}' style="width:270px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Fatty-Food</h5>
+                            <p class="card-text">Our bodies require small amounts of 'good fat' to function and help
+                                prevent disease.A lot of modern diets contain far more fat than the body needs.So eat in
+                                calculative way to become healthy.</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <img alt="..." class="card-img-top" src='{% static "images/fiber.jpeg" %}' style="width:270px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Fibers</h5>
+                            <p class="card-text">Fiber is the part of plant-based foods that the body can’t breaks. It
+                                passes through the body undigested, keeping your digestive system clean and healthy.</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <img alt="..." class="card-img-top" src='{% static "images/minrl.jpg" %}' style="width:270px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Minerals</h5>
+                            <p class="card-text">Our body needs many minerals,these are called essential minerals.
+                                Essential minerals are sometimes divided up into major minerals (macrominerals) and
+                                trace minerals (microminerals).</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <img alt="..." class="card-img-top" src='{% static "images/protien.jpeg" %}'
+                             style="width:270px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Protein</h5>
+                            <p class="card-text">Protein is a macronutrient that is essential to building muscle mass.
+                                It is commonly found in animal products, though is also present in other sources, such
+                                as nuts and legumes. .</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <img alt="..." class="card-img-top" src='{% static "images/vitamin.jpg" %}'
+                             style="width:270px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Vitamins</h5>
+                            <p class="card-text">A vitamin is an organic molecule that is an essential micronutrient
+                                which an organism needs in small quantities for the proper functioning of its
+                                metabolic reaction.</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <img alt="..." class="card-img-top" src='{% static "images/water.jpeg" %}' style="width:270px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Water</h5>
+                            <p class="card-text">Water maintain the Balance of Body Fluids.Our body is composed
+                                of about 60% water.Functions of bodily fluids include circulation,transportation so
+                                on.</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <img alt="..." class="card-img-top" src='{% static "images/same.jpg" %}' style="width:270px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <img alt="..." class="card-img-top" src='{% static "images/vegi.jpg" %}' style="width:270px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!--    &lt;!&ndash; left and right controls for the slide &ndash;&gt;-->
+<!--    <a class="carousel-control-prev" data-slide="prev" href="#demo">-->
+<!--        <span class="carousel-control-prev-icon"></span>-->
+<!--    </a>-->
+<!--    <a class="carousel-control-next" data-slide="next" href="#demo">-->
+<!--        <span class="carousel-control-next-icon"></span>-->
+<!--    </a>-->
+
+
+    {% endblock %}

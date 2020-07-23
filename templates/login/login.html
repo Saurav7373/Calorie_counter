@@ -1,0 +1,122 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+    </style>
+    <title>Login-Diet planner</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class='col-md-3'></div>
+        <div class="col-md-6">
+            <div id="card">
+                <div id="login">
+                    {% if response_message %}
+                    <p>{{ response_message }}</p>
+                    {% endif %}
+
+                    <form action="/login/" method="POST">
+                        {% csrf_token %}
+                        <div class="mt-3">
+                            <center>
+                                <legend>Login Here</legend>
+                            </center>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input autocomplete="off" class="form-control" id="username1" name="username" placeholder="Username"
+                                   required type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input autocomplete="off" class="form-control" id="password" name="password" placeholder="Password"
+                                   required type="password" value="">
+                        </div>
+                        <div class="form-group">
+                            <input class="btn btn-primary btn-login-submit btn-block m-t-md" type="submit"
+                                   value="Login">
+                        </div>
+
+                    </form>
+                    <div class="form-group">
+                        <p class="text-center m-t-xs text-sm">Don't have an account?</p>
+                        <button class="btn btn-success btn-block m-t-md" id="flip">Create an account</button>
+                    </div>
+                </div>
+
+                <div id="signup" style="display: none;">
+                    <form action="/login/register" method="POST">
+                        {% csrf_token %}
+                        <center>
+                            <legend>Signup Here</legend>
+                        </center>
+                        <div class="form-group">
+                        <input class="form-control" id="username" name="username" placeholder="User Name"
+                               required type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" id="fname" name="fname" placeholder="First Name"
+                               required type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" id="lname" name="lname" placeholder="Last Name"
+                               required type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" id="email" name="email" placeholder="name@gmail.com"
+                               required type="email">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" id="pass1" name="pass1" placeholder="Choose Password"
+                               required type="password">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" id="pass2" name="pass2" placeholder="Confirm Password"
+                               required type="password">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" type="submit">Register</button>
+                    </div>
+                        {% csrf_token %}
+                    </form>
+                    <div class="form-group">
+                        <p class="text-center m-t-xs text-sm">Already have an account?</p>
+                        <button class="btn btn-primary btn-block m-t-md" id="flip2">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='col-md-3'></div>
+    </div>
+</div>
+
+<script>
+        $("#flip").click(function () {
+            $("#login").hide();
+            $("#signup").show();
+        });
+
+        $("#flip2").click(function () {
+            $("#signup").hide();
+            $("#login").show();
+        });
+
+
+
+</script>
+</body>
+</html>
+
+
+

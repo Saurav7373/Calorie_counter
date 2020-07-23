@@ -1,0 +1,102 @@
+{% extends 'webapp/base.html' %}
+
+
+{% block content %}
+<div class="container my-3">
+    <h2>Diet plans</h2>
+
+    {% if response_message %}
+    <div %} %} class="{{ response_message.tags }}" endif if
+         response_message.tags {% {%> {{ response_message }}
+    </div>
+    {% endif %}
+
+    {% include "webapp/modal.html" %}
+
+    <!-- Create new diet plan -->
+    <button class="btn btn-info btn-lg" data-target="#createDiet" data-toggle="modal" type="button">Create new diet
+        plan
+    </button>
+
+    <div class="modal fade" id="createDiet" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Enter a name for your diet plan</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form action="/creatediet" method="POST">
+                        {% csrf_token %}
+                        <input autocomplete="off" name="diet_name" placeholder="Diet name" required type="text">
+                        <button class="btn btn-success mx-3" type="submit">Submit</button>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if diet_names %}
+    {% if diet_names|length == 0 %}
+    <p>You do not have any diet plans. Create one by clicking "Create new diet plan"</p>
+    {% else %}
+    {% for diet in diet_names %}
+    <h1>{{ diet.diet_name }}</h1>
+
+    <!-- View diet -->
+    <div class="align">
+        <form action="/viewdiet/{{ diet.diet_name }}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-default" type="submit">View diet</button>
+        </form>
+    </div>
+
+    <!-- Rename diet -->
+    <div class="align">
+        <button class="btn btn-default" data-target="#renameDiet" data-toggle="modal">Rename</button>
+
+        <div class="modal fade" id="renameDiet" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Rename diet plan</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <form action="/renamediet" method="POST">
+                            {% csrf_token %}
+                            <input autocomplete="off" name="new_diet_name" placeholder="New diet name" required
+                                   type="text">
+                            <input name="diet_name" type="hidden" value="{{ diet.diet_name }}">
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Delete diet -->
+    <div class="align">
+        <form action="/deletediet" method="POST">
+            {% csrf_token %}
+            <input name="diet_name" type="hidden" value="{{ diet.diet_name }}">
+            <button class="btn btn-danger" type="submit">Delete</button>
+        </form>
+    </div>
+    <br>
+    {% endfor %}
+    {% endif %}
+    {% endif %}
+</div>
+
+{% endblock %}

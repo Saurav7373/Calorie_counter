@@ -1,0 +1,90 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet">
+
+    <title>Diet planner</title>
+
+    <!--    <meta charset="utf-8">-->
+    <!--    <meta content="width=device-width, initial-scale=1" name="viewport">-->
+    <!--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--    <link href="{% static 'css/style.css' %}" rel="stylesheet">-->
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'images/same.jpg' %}" width="50" height="50" class="d-inline-block align-top" alt=""
+             loading="lazy">
+    </a>
+<!--    <a class="navbar-brand" href="home/">Home </a>-->
+    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler"
+            data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Meals <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/inventory">Inventory <span class="sr-only">(current)</span></a>
+                </a>
+            </li>
+        </ul>
+
+        {% if user.is_authenticated %}
+        <ul class="navbar-nav ml-auto">
+            <div style="float: right;">
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                       data-toggle="dropdown"
+                       href="#" id="navbarDropdown" role="button">
+                        Welcome {{user.username }} you are logged in
+                    </a>
+                    <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                        <center>
+                            <button class="btn btn-danger" onclick="location.href='/login/logout'">Logout
+                            </button>
+                        </center>
+                    </div>
+                </li>
+
+            </div>
+        </ul>
+        {% endif %}
+</nav>
+
+<div id="main">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script crossorigin="anonymous"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

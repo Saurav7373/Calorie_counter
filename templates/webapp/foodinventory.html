@@ -1,0 +1,131 @@
+{% extends 'webapp/base.html' %}
+
+<!-- List of foods here, as well as the option to update / delete them -->
+
+{% block content %}
+<div class="container my-3 ">
+    <h1>Food inventory</h1>
+    <h3>Click on "Add food" to add a new food</h3>
+
+    {% if response_message %}
+    <div %} %}class="{{ response_message.tags }}" endif if response_message.tags {% {%> {{ response_message }}</div>
+    {% endif %}
+
+    <button class="btn btn-info btn-lg" data-target="#addFood" data-toggle="modal" type="button">Add food</button>
+
+    <!-- OCR Nutrition Label -->
+    <button class="btn btn-default" data-target="#imglink" data-toggle="collapse" type="button">Or get food info
+        from an image URL
+    </button>
+    <div class="collapse out" id="imglink">
+        <div class="align">
+            <form action="/ocr/" method="POST">
+                {% csrf_token %}
+                <input autocomplete="off" name="imglink" placeholder="Enter .jpg or .png link" required type="url">
+                <button class="btn btn-success" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    {% if ocr_data %}
+    <script>
+            window.onload = function() {
+                $("#addFood").modal("toggle");
+            };
+
+
+    </script>
+    {% endif %}
+
+    <!-- Add food -->
+    <div class="modal fade" id="addFood" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add a food item</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form action="/inventory/addfood" method="POST">
+                        {% csrf_token %}
+                        <div class="instructions">
+                            Fill in what you can, empty boxes will be set to 0
+                        </div>
+                        <input autocomplete="off" name="food_name" placeholder="Food name" required type="text">
+                        {% if ocr_data %}
+                        {% include 'webapp/nutrition.html' with foodinfo=ocr_data %}
+                        <div class="align">
+                            <img src="{{ link }}">
+                        </div>
+                        {% else %}
+                        {% include 'webapp/nutrition.html' %}
+                        {% endif %}
+                        <button class="btn btn-success" type="submit">Submit</button>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- List out the foods -->
+    {% if names|length == 0 %}
+    <p>There are no foods</p>
+    {% else %}
+    {% for food in names %}
+
+    <br>
+    <div class="align" id="spacing">
+        <b>  <i> <p>{{ food.food_name }}</p></i> </b>
+    </div>
+
+    <div class="align">
+        <!-- Update food -->
+        <button class="btn btn-default" data-target="#updateFood{{ food.food_name|cut:" data-toggle="modal"
+                type="button">Edit</button>
+        <div class="modal fade" id="updateFood{{ food.food_name|cut:"
+        " }}" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit food info</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form action="/inventory/updatefood" method="POST">
+                        {% csrf_token %}
+                        <input disabled value="{{ food.food_name }}">
+                        <input name="food_name" type="hidden" value="{{ food.food_name }}">
+                        {% include 'webapp/nutrition.html' with foodinfo=food %}
+                        <button class="btn btn-success" type="submit">Submit</button>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="align">
+    <!-- Delete food -->
+    <form action="/inventory/deletefood" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="{{ food.food_name }}">
+        <input name="food_name" type="hidden" value="{{ food.food_name }}">
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+</div>
+
+<br>
+{% endfor %}
+{% endif %}
+
+
+{% endblock %}
