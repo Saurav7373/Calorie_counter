@@ -120,7 +120,7 @@
     <p style="color:red;background:black">Calories: {{ total_macro_sum.calories }}, Protein: {{ total_macro_sum.protein }}g, Carbs: {{ total_macro_sum.carbs }}g, Fats: {{ total_macro_sum.fats }}g</p>
 
     <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#exportdiet">Export to text</button>
-    <div ifd="exportdiet" class="collapse out mt-3">
+    <div if id="exportdiet" class="collapse out mt-3">
         <textarea rows="10" cols="50" readonly="true">{{ text_format }}</textarea>
     </div>
 </div>

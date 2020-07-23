@@ -17,9 +17,9 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-	path("", include("meals.urls")),
-    path("inventory/", include("inventory.urls", namespace="inventory")),
-    path("ocr/", include("nutritionocr.urls")),
-    path("login/", include("login.urls")),
-    path("admin/", admin.site.urls),
+    path( "", include( "meals.urls" ) ),
+    path( "inventory/", include( "inventory.urls", namespace="inventory" ) ),
+    path( "ocr/", include( "nutritionocr.urls" ) ),
+    path( "login/", include( "login.urls" ) ),
+    path( "admin/", admin.site.urls ),
 ]
